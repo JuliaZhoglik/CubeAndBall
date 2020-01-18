@@ -24,10 +24,10 @@ public class FigureObject : MonoBehaviour
 
     void Awake()
     {
-        Color DefaultColor = new Color32(248, 248, 248, 255);
+        Color DefaultColor = new Color32(255, 255, 255, 255);
         if (name == "Cube")
         {
-            DefaultColor = new Color32(55, 55, 55, 255);
+            DefaultColor = new Color32(0, 0, 0, 255);
         }
         Color FigureColor;
         FigureColor.r = PlayerPrefs.GetFloat(name + "r", DefaultColor.r);
@@ -51,17 +51,21 @@ public class FigureObject : MonoBehaviour
     // будет вызван при получении события SELECT_FIGURE
     void OnSelect(string figure)
     {
+        gameObject.SetActive(false);
+        FigureSelect = false;
         if (name == figure)
         {
-            Debug.Log(name);
+            gameObject.SetActive(true);
             FigureSelect = true;
             Messenger<Color>.Broadcast(GameEvent.SELECT_BUTTON, GetComponent<Renderer>().material.color);
+            Messenger<Transform>.Broadcast(GameEvent.LOOK_AT_FIGURE, transform);
         }
     }
 
     // будет вызван при получении события BACK
     void OnUnselect()
     {
+        gameObject.SetActive(true);
         FigureSelect = false;
     }
 }

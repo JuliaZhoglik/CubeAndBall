@@ -10,26 +10,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private SettingsPopup PanelMain;
     [SerializeField] private SettingsPopup PanelColor;
 
-    private ButtonColor myDataClass;
-
-    void Awake()
-    {
-        // подписываемся на события и указываем методы, которые будут вызваны при возникновение этого события
-        Messenger.AddListener(GameEvent.GAME_STARTED, OnGameStarted);
-    }
-
-    void OnDestroy()
-    {
-        Messenger.RemoveListener(GameEvent.GAME_STARTED, OnGameStarted);
-    }
-
-    // будет вызван при получении события GAME_STARTED
-    private void OnGameStarted()
-    {
-        Debug.Log("Start"); // create
-    }
-
-
     void Start()
     {
         OnCloseSettings();

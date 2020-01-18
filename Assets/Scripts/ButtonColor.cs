@@ -14,15 +14,12 @@ public class ButtonColor : MonoBehaviour
         Messenger<Color>.AddListener(GameEvent.SELECT_BUTTON, OnSelectButtonColor);
         Color32 ColorButton = GetComponent<Image>().color;
         float SumColor = ColorButton.r + ColorButton.g + ColorButton.b;
-        Debug.Log(name + "SumColor = " + SumColor);
         if (SumColor  > ((255 + 255 + 255) / 2))
         {
-            Debug.Log(name + "Black");
             GetComponentInChildren<Text>(true).color = new Color32(0, 0, 0, 255); // black
         }
         else
         {
-            Debug.Log(name + "White");
             GetComponentInChildren<Text>(true).color = new Color32(255, 255, 255, 255); // white
         }
     }
